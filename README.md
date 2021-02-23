@@ -86,7 +86,8 @@ Then, in the above `config.json`, substitute the value of `pz-user` for `<user_i
 Once you have a valid `config.json`, you can scrape the data yourself by following these steps. 
 
 1. Run `scraper.py` to populate `data.json` with data. 
-2. Once `data.json` is populated, run `main.py` to print analysis to stdout
+    - This might take a minute, depending on how many crosswords you request
+3. Once `data.json` is populated, run `main.py` to print analysis to stdout
     - It's a lot of output, so it can be useful to pipe to a file, like `python main.py > text.out`
 
 # Important Notes
