@@ -4,7 +4,7 @@ Board data for over 600 NYT Daily Mini Crossword puzzles from late 2019 to today
 
 # About
 
-There are only a few files in this repository. `scraper.py` is the script I used to download all of my mini crossword data from the NYT games API and write it to a json file. The `main.py` script parses the json data and outputs some significant stats in a table format. Ex:
+There are only a few files in this repository. `scraper.py` is the script I used to download all of my mini crossword data from the NYT games API and write it to a json file. The `main.py` script parses the json data and outputs some significant stats in a table format. Currently, it just finds the most frequent words and the my average solve time for each word. Ex:
 
 ```
 Mini Crosswords: 581
