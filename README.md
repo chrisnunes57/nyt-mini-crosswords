@@ -28,6 +28,17 @@ Finally, the `data.json` file contains the actual data output from running `scra
 
 ```json
 {
+    "author": "Joel Fagliano",
+    "editor": "",
+    "format_type": "Normal",
+    "print_date": "2019-07-01",
+    "publish_type": "Mini",
+    "puzzle_id": 16905,
+    "title": "",
+    "version": 4,
+    "percent_filled": 100,
+    "solved": true,
+    "star": null,
     "cells": [
         {
             "guess": "F",
