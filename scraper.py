@@ -37,9 +37,9 @@ for url in urls:
         cword_response = requests.get(data_url, headers=security_header)
         cword_response_data = json.loads(cword_response.content)
 
-        cword["board"] = cword_response_data["board"]
-
-        game_data.append(cword)
+        if cword['solved']:
+            cword["board"] = cword_response_data["board"]
+            game_data.append(cword)
         
 
 # output the list of boards somehow (for now, writing to a json file)

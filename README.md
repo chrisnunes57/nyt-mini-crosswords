@@ -86,9 +86,9 @@ This `frequencies.py` file will work as-is, but the requests to the NYT servers 
 }
 ```
 
-The `nyt-s` token is a security cookie that the NYT game server uses to validate each request, and the `user-id` token is a numeric ID that is used to identify each user. 
+The `nyt-s` token is a security cookie that the NYT game server uses to validate each request, and the `user-id` token is a numeric ID that is used to identify each user.
 
-You can find both of these values by using `Inspect Element` and poking around the session storage until you find the `pz-user` and `pz-user-check` values. 
+You can find both of these values by using `Inspect Element` and poking around the **session storage** until you find the `pz-user` and `pz-user-check` values. 
 
 Then, in the above `config.json`, substitute the value of `pz-user` for `<user_id>` and the value of `pz-user-check` for `<security_token>`.
 
@@ -97,7 +97,7 @@ Then, in the above `config.json`, substitute the value of `pz-user` for `<user_i
 Once you have a valid `config.json`, you can scrape the data yourself by following these steps. 
 
 1. Run `scraper.py` to populate `data.json` with data. 
-    - This might take a minute, depending on how many crosswords you request
+    - This might take a minute, as it will make a request for each day in the desired date range
 3. Once `data.json` is populated, run `frequencies.py` to print analysis to stdout
     - It's a lot of output, so it can be useful to pipe to a file, like `python frequencies.py > text.out`
 
