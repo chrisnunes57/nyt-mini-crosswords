@@ -15,6 +15,9 @@ security_header = config['s-header']
 user_id = config['user-id']
 
 urls = [
+    'https://nyt-games-prd.appspot.com/svc/crosswords/v3/' + user_id + '/puzzles.json?publish_type=mini&sort_order=asc&sort_by=print_date&date_start=2019-01-01&date_end=2019-02-28',
+    'https://nyt-games-prd.appspot.com/svc/crosswords/v3/' + user_id + '/puzzles.json?publish_type=mini&sort_order=asc&sort_by=print_date&date_start=2019-03-01&date_end=2019-04-30',
+    'https://nyt-games-prd.appspot.com/svc/crosswords/v3/' + user_id + '/puzzles.json?publish_type=mini&sort_order=asc&sort_by=print_date&date_start=2019-05-01&date_end=2019-06-30',
     'https://nyt-games-prd.appspot.com/svc/crosswords/v3/' + user_id + '/puzzles.json?publish_type=mini&sort_order=asc&sort_by=print_date&date_start=2019-07-01&date_end=2019-07-31',
     'https://nyt-games-prd.appspot.com/svc/crosswords/v3/' + user_id + '/puzzles.json?publish_type=mini&sort_order=asc&sort_by=print_date&date_start=2019-08-01&date_end=2019-10-31',
     'https://nyt-games-prd.appspot.com/svc/crosswords/v3/' + user_id + '/puzzles.json?publish_type=mini&sort_order=asc&sort_by=print_date&date_start=2019-11-01&date_end=2020-01-31',
@@ -33,11 +36,12 @@ for url in urls:
     data = json.loads(response.content)['results']
 
     for cword in data:
-        data_url = game_url_template + str(cword['puzzle_id']) + ".json"
-        cword_response = requests.get(data_url, headers=security_header)
-        cword_response_data = json.loads(cword_response.content)
-
         if cword['solved']:
+            data_url = game_url_template + str(cword['puzzle_id']) + ".json"
+            cword_response = requests.get(data_url, headers=security_header)
+            cword_response_data = json.loads(cword_response.content)
+
+            
             cword["board"] = cword_response_data["board"]
             game_data.append(cword)
         

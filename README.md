@@ -1,26 +1,26 @@
 # NYT Mini Crossword Data
 
-Board data for over 600 NYT Daily Mini Crossword puzzles from late 2019 to today. This repository contains the downloaded data for these games, as well as the python scripts I used to download, clean, and analyze the data.
+Puzzle data for over 750 NYT Daily Mini Crossword puzzles from January 2019 - February 2021. This repository contains the downloaded data for these games, as well as the python scripts I used to download, clean, and analyze the data.
 
 # About
 
 There are only a few files in this repository. `scraper.py` is the script I used to download all of my mini crossword data from the NYT games API and write it to a json file. The `frequencies.py` script parses the json data and outputs some significant stats in a table format. Currently, it just finds the most frequent words and the my average solve time for each word. Ex:
 
 ```
-Mini Crosswords: 581
-Individual Words: 4279
-29.283% of words had frequency > 1
+Mini Crosswords: 752
+Individual Words: 5152
+33.036% of words had frequency > 1
 
-| word    | occurances   | average solve time   |
-------------------------------------------------
-| YES     | 13           | 1.4057s              |
-| RED     | 10           | 1.7924s              |
-| EYES    | 9            | 4.1658s              |
-| EMAIL   | 8            | 2.8304s              |
-| OREO    | 8            | 2.4502s              |
-| SHY     | 7            | 2.4929s              |
-| ACHOO   | 7            | 2.6192s              |
-| ...     | ...          | ...                  |
+| word    | occurances   | average solve time   | most recent use   |
+---------------------------------------------------------------------
+| YES     | 16           | 1.1374s              | Sept 30, 2020     |
+| EYES    | 11           | 3.3347s              | Jan 7, 2021       |
+| OREO    | 10           | 1.9425s              | Dec 17, 2020      |
+| RED     | 10           | 1.7924s              | Nov 23, 2020      |
+| ABC     | 9            | 1.7772s              | Dec 22, 2020      |
+| SHY     | 9            | 10.565s              | Dec 15, 2020      |
+| EMAIL   | 9            | 2.4516s              | Dec 8, 2020       |
+| ...     | ...          | ...                  | ...               |
 ```
 
 
@@ -104,3 +104,5 @@ Once you have a valid `config.json`, you can scrape the data yourself by followi
 # Important Notes
 
 The board data fetched by `scraper.py` will only contain correct data if you have correctly solved the mini crosswords that you request. If your mini crosswords are unsolved/incorrect, the data will match what you have. So, the more crosswords you have solved, the better your data will be. 
+
+I haven't tested for the exact number, but it looks like the NYT API will only return **two months** worth of data per API call. It might beneficial to find the exact number at somepoint so that I can optimize my API calls (i.e., not make 11 API calls to get the data).

@@ -3,6 +3,30 @@ import math
 from pprint import pprint
 
 EMPTY_SYMBOL = '*'
+MONTHS = {
+    "01": "Jan",
+    "02": "Feb",
+    "03": "Mar",
+    "04": "Apr",
+    "05": "May",
+    "06": "Jun",
+    "07": "Jul",
+    "08": "Aug",
+    "09": "Sept",
+    "10": "Oct",
+    "11": "Nov",
+    "12": "Dec",
+}
+
+# takes in date string in format 'YYYY-MM-DD' and returns prettier date
+def pretty_date(date):
+    tokens = date.split("-")
+
+    year = tokens[0]
+    month = MONTHS[tokens[1]]
+    day = tokens[2] if tokens[2][0] != '0' else tokens[2][1:]
+    
+    return "{m} {d}, {y}".format(m=month, d=day, y=year)
 
 # takes in a list of cells, returns a 2d array of the grid as tuples (guess, time)
 def get_board(cells):
@@ -83,7 +107,7 @@ def get_words(cells):
 
 
 frequencies = {}
-data = None
+puzzle_dates = {}
 
 with open("data.json", 'r') as f:
     data = json.loads(f.read())
@@ -115,17 +139,25 @@ with open("data.json", 'r') as f:
             frequencies[word_tup[0]]['average_time'] = (frequencies[word_tup[0]]['average_time'] + word_tup[1]) / frequencies[word_tup[0]]['freq']
             frequencies[word_tup[0]]['puzzles'].append(board['puzzle_id'])
 
+        puzzle_dates[board['puzzle_id']] = board['print_date']
+
+
 # output results somehow (for now, stdout)
 print("Mini Crosswords:", len(data))
 print("Individual Words:", len(frequencies))
 print('{0:.5g}'.format(sum(1 for n in frequencies if frequencies[n]['freq'] > 1) / len(frequencies) * 100) + "% of words had frequency > 1\n")
 
 # print table of results
-print('| word'.ljust(10) + '| occurances'.ljust(15) + '| average solve time'.ljust(23) + "|")
-print('-' * 48)
+print('| word'.ljust(10) + '| occurances'.ljust(15) + '| average solve time'.ljust(23) + '| most recent use'.ljust(20) + '|')
+print('-' * 69)
 
-for w in sorted(frequencies, key=lambda item: frequencies[item]['freq'], reverse=True):
-    print(("| " + w).ljust(10) + ('| ' + '{0:.5g}'.format(frequencies[w]['freq'])).ljust(15) + ('| ' + '{0:.5g}'.format(frequencies[w]['average_time']) + "s").ljust(23) + "|")
+for word in sorted(frequencies, key=lambda item: frequencies[item]['freq'], reverse=True):
+
+    avg_freq = '{0:.5g}'.format(frequencies[word]['freq'])
+    avg_time = '{0:.5g}'.format(frequencies[word]['average_time']) + "s"
+    date = pretty_date(puzzle_dates[frequencies[word]['puzzles'][-1]])
+
+    print(("| " + word).ljust(10) + ('| ' + avg_freq).ljust(15) + ('| ' + avg_time).ljust(23) + ('| ' + date).ljust(20) + '|')
 
 with open('word-data.json', 'w') as f:
     f.write(json.dumps(frequencies))
