@@ -20,7 +20,7 @@ There are only a few files in this repository. `scraper.py` is the script I used
   - | SHY     | 7            | 2.4929s              |
   - | ACHOO   | 7            | 2.6192s              |
 
-Finally, the `data.json` file contains the actual data output from running `scraper.py`. The data is formatted as a list of objects, where each object is an individual mini crossword. 
+Finally, the `data.json` file contains the actual data output from running `scraper.py`. The data is formatted as a list of objects, where each object is an individual mini crossword. The format of each crossword puzzle object is as follows: 
 
 # Usage
 

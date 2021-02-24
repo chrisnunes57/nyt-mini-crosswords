@@ -82,7 +82,7 @@ def get_words(cells):
     return words
 
 
-with open("data.json", 'r') as f:
+with open("cell-data.json", 'r') as f:
     data = json.loads(f.read())
     frequencies = {}
 
