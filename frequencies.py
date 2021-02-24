@@ -83,32 +83,37 @@ def get_words(cells):
 
 
 frequencies = {}
+data = None
 
-with open("cell-data.json", 'r') as f:
+with open("data.json", 'r') as f:
     data = json.loads(f.read())
 
     for board in data:
-        words = get_words(board['cells'])
+        words = get_words(board['board']['cells'])
 
         for word_tup in words['across']:
             if not word_tup[0] in frequencies:
                 frequencies[word_tup[0]] = {
                     "average_time": 0,
-                    "freq": 0
+                    "freq": 0,
+                    "puzzles": []
                 }
 
             frequencies[word_tup[0]]['freq'] += 1
             frequencies[word_tup[0]]['average_time'] = (frequencies[word_tup[0]]['average_time'] + word_tup[1]) / frequencies[word_tup[0]]['freq']
+            frequencies[word_tup[0]]['puzzles'].append(board['puzzle_id'])
 
         for word_tup in words['down']:
             if not word_tup[0] in frequencies:
                 frequencies[word_tup[0]] = {
                     "average_time": 0,
-                    "freq": 0
+                    "freq": 0,
+                    "puzzles": []
                 }
 
             frequencies[word_tup[0]]['freq'] += 1
             frequencies[word_tup[0]]['average_time'] = (frequencies[word_tup[0]]['average_time'] + word_tup[1]) / frequencies[word_tup[0]]['freq']
+            frequencies[word_tup[0]]['puzzles'].append(board['puzzle_id'])
 
 # output results somehow (for now, stdout)
 print("Mini Crosswords:", len(data))

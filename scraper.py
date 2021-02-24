@@ -25,6 +25,7 @@ urls = [
     'https://nyt-games-prd.appspot.com/svc/crosswords/v3/' + user_id + '/puzzles.json?publish_type=mini&sort_order=asc&sort_by=print_date&date_start=2020-12-01&date_end=2021-01-31'
 ]
 
+game_data = []
 # scrape crossword lists for publish dates and game ids
 for url in urls:
     response = requests.get(url, headers=security_header)
@@ -32,16 +33,15 @@ for url in urls:
     data = json.loads(response.content)['results']
 
     for cword in data:
-        puzzle_ids.append(cword['puzzle_id'])
+        data_url = game_url_template + str(cword['puzzle_id']) + ".json"
+        cword_response = requests.get(data_url, headers=security_header)
+        cword_response_data = json.loads(cword_response.content)
 
-game_data = []
-# get board data for each game
-for id in puzzle_ids:
-    data_url = game_url_template + str(id) + ".json"
-    response = requests.get(data_url, headers=security_header)
-    game_data.append(json.loads(response.content)["board"])
+        cword["board"] = cword_response_data["board"]
+
+        game_data.append(cword)
+        
 
 # output the list of boards somehow (for now, writing to a json file)
 with open("data.json", "w") as f:
     f.write(json.dumps(game_data))
-

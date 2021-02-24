@@ -4,7 +4,7 @@ Board data for over 600 NYT Daily Mini Crossword puzzles from late 2019 to today
 
 # About
 
-There are only a few files in this repository. `scraper.py` is the script I used to download all of my mini crossword data from the NYT games API and write it to a json file. The `main.py` script parses the json data and outputs some significant stats in a table format. Currently, it just finds the most frequent words and the my average solve time for each word. Ex:
+There are only a few files in this repository. `scraper.py` is the script I used to download all of my mini crossword data from the NYT games API and write it to a json file. The `frequencies.py` script parses the json data and outputs some significant stats in a table format. Currently, it just finds the most frequent words and the my average solve time for each word. Ex:
 
 ```
 Mini Crosswords: 581
@@ -24,7 +24,7 @@ Individual Words: 4279
 ```
 
 
-Finally, the `cell-data.json` file contains the actual data output from running `scraper.py`. The data is formatted as a list of objects, where each object is an individual mini crossword. The format of each crossword puzzle object is as follows: 
+Finally, the `data.json` file contains the actual data output from running `scraper.py`. The data is formatted as a list of objects, where each object is an individual mini crossword. The format of each crossword puzzle object is as follows: 
 
 ```json
 {
@@ -64,7 +64,7 @@ By using cells array, we can figure out the layout of the grid and the across/do
 
 # Setup
 
-This `main.py` file will work as-is, but the requests to the NYT servers won't work without adding some of your own security credentials. To make `scraper.py` work, you need to create a `config.json` file in the same directory. The file will be structured as follows:
+This `frequencies.py` file will work as-is, but the requests to the NYT servers in `scraper.py` won't work without adding some of your own security credentials. To make `scraper.py` work, you need to create a `config.json` file in the same directory. The file will be structured as follows:
 
 ```json
 {
@@ -85,10 +85,10 @@ Then, in the above `config.json`, substitute the value of `pz-user` for `<user_i
 
 Once you have a valid `config.json`, you can scrape the data yourself by following these steps. 
 
-1. Run `scraper.py` to populate `cell-data.json` with data. 
+1. Run `scraper.py` to populate `data.json` with data. 
     - This might take a minute, depending on how many crosswords you request
-3. Once `cell-data.json` is populated, run `main.py` to print analysis to stdout
-    - It's a lot of output, so it can be useful to pipe to a file, like `python main.py > text.out`
+3. Once `data.json` is populated, run `frequencies.py` to print analysis to stdout
+    - It's a lot of output, so it can be useful to pipe to a file, like `python frequencies.py > text.out`
 
 # Important Notes
 
