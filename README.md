@@ -103,6 +103,6 @@ Once you have a valid `config.json`, you can scrape the data yourself by followi
 
 # Important Notes
 
-The board data fetched by `scraper.py` will only contain correct data if you have correctly solved the mini crosswords that you request. If your mini crosswords are unsolved/incorrect, the data will match what you have. So, the more crosswords you have solved, the better your data will be. 
+The crosswords fetched by the program will reflect the amount of crosswords that you have solved. So, if you have only solved 30 crosswords, `scraper.py` will only return data about 30 crosswords. 
 
-I haven't tested for the exact number, but it looks like the NYT API will only return **two months** worth of data per API call. It might beneficial to find the exact number at somepoint so that I can optimize my API calls (i.e., not make 11 API calls to get the data).
+Additionally, I haven't tested for the exact number, but it looks like the NYT API will only return **two months** worth of data per API call. It might beneficial to find the exact number at somepoint so that I can optimize my API calls (i.e., not make 11 API calls to get the data).
