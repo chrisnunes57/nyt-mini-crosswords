@@ -58,7 +58,7 @@ Finally, the `cell-data.json` file contains the actual data output from running 
 
 Each entry in the `"cells"` array represents one letter in the grid, and the timestamp when the letter was submitted (ex: above, I submitted 'F' after 27 seconds). 
 
-So in the above example, we can see that the first word in the grid was "Faust" (the guy who traded his soul to the devil", and I entered the first letter after 9 seconds and the last letter after 34 seconds. 
+So in the above example, we can see that the first word in the grid was "Faust" (the guy who traded his soul to the devil), and I entered the first letter after 9 seconds and the last letter after 34 seconds. 
 
 By using cells array, we can figure out the layout of the grid and the across/down words of the grid.
 
