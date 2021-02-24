@@ -82,9 +82,10 @@ def get_words(cells):
     return words
 
 
+frequencies = {}
+
 with open("cell-data.json", 'r') as f:
     data = json.loads(f.read())
-    frequencies = {}
 
     for board in data:
         words = get_words(board['cells'])
@@ -109,15 +110,20 @@ with open("cell-data.json", 'r') as f:
             frequencies[word_tup[0]]['freq'] += 1
             frequencies[word_tup[0]]['average_time'] = (frequencies[word_tup[0]]['average_time'] + word_tup[1]) / frequencies[word_tup[0]]['freq']
 
-    # output results somehow (for now, stdout)
-    print("Mini Crosswords:", len(data))
-    print("Individual Words:", len(frequencies))
-    print('{0:.5g}'.format(sum(1 for n in frequencies if frequencies[n]['freq'] > 1) / len(frequencies) * 100) + "% of words had frequency > 1\n")
+# output results somehow (for now, stdout)
+print("Mini Crosswords:", len(data))
+print("Individual Words:", len(frequencies))
+print('{0:.5g}'.format(sum(1 for n in frequencies if frequencies[n]['freq'] > 1) / len(frequencies) * 100) + "% of words had frequency > 1\n")
 
-    # print table of results
-    print('| word'.ljust(10) + '| occurances'.ljust(15) + '| average solve time'.ljust(23) + "|")
-    print('-' * 48)
+# print table of results
+print('| word'.ljust(10) + '| occurances'.ljust(15) + '| average solve time'.ljust(23) + "|")
+print('-' * 48)
 
-    for w in sorted(frequencies, key=lambda item: frequencies[item]['freq'], reverse=True):
-        print(("| " + w).ljust(10) + ('| ' + '{0:.5g}'.format(frequencies[w]['freq'])).ljust(15) + ('| ' + '{0:.5g}'.format(frequencies[w]['average_time']) + "s").ljust(23) + "|")
+for w in sorted(frequencies, key=lambda item: frequencies[item]['freq'], reverse=True):
+    print(("| " + w).ljust(10) + ('| ' + '{0:.5g}'.format(frequencies[w]['freq'])).ljust(15) + ('| ' + '{0:.5g}'.format(frequencies[w]['average_time']) + "s").ljust(23) + "|")
+
+with open('word-data.json', 'w') as f:
+    f.write(json.dumps(frequencies))
+
+
                                                             
