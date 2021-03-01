@@ -23,6 +23,23 @@ Individual Words: 5152
 | ...     | ...          | ...                  | ...               |
 ```
 
+The `puzzle_metrics.py` script will act similarly, parsing the board data and generating a table showing how fast I've solved each puzzle. Ex:
+
+```
+Mini Crosswords: 769
+Shortest Solve Time: 1s 
+Longest Solve Time: 7m 36s 
+Average Solve Time: 29s  
+
+---------------------------------------------
+| Puzzle ID  | Date           | Solve Time  |
+---------------------------------------------
+| 16197      | Jan 2, 2019    | 1s          |
+| 18615      | Sept 21, 2020  | 3s          |
+| 18652      | Oct 9, 2020    | 3s          |
+| 18702      | Oct 10, 2020   | 3s          |
+| 17697      | Jan 25, 2020   | 4s          |
+```
 
 Finally, the `data.json` file contains the actual data output from running `scraper.py`. The data is formatted as a list of objects, where each object is an individual mini crossword. The format of each crossword puzzle object is as follows: 
 
@@ -75,7 +92,7 @@ By using cells array, we can figure out the layout of the grid and the across/do
 
 # Setup
 
-This `frequencies.py` file will work as-is, but the requests to the NYT servers in `scraper.py` won't work without adding some of your own security credentials. To make `scraper.py` work, you need to create a `config.json` file in the same directory. The file will be structured as follows:
+This `frequencies.py` and `puzzle_metrics.py`  files will work as-is, but the requests to the NYT servers in `scraper.py` won't work without adding some of your own security credentials. To make `scraper.py` work, you need to create a `config.json` file in the same directory. The file will be structured as follows:
 
 ```json
 {
@@ -98,8 +115,11 @@ Once you have a valid `config.json`, you can scrape the data yourself by followi
 
 1. Run `scraper.py` to populate `data.json` with data. 
     - This might take a minute, as it will make a request for each day in the desired date range
-3. Once `data.json` is populated, run `frequencies.py` to print word-related analysis to stdout
+2. Once `data.json` is populated, run `frequencies.py` to print word-related analysis to stdout
     - It's a lot of output, so it can be useful to pipe to a file, like `python frequencies.py > text.out`
+3. Once `data.json` is populated, you can also run `puzzle_metrics.py` to print puzzle-related analysis to stdout
+    - Similarly to `frequencies.py`, it can be useful to pipe output to a file, like `python puzzle_metrics.py > text.out`
+
 
 # Important Notes
 
