@@ -25,7 +25,7 @@ urls = [
     'https://nyt-games-prd.appspot.com/svc/crosswords/v3/' + user_id + '/puzzles.json?publish_type=mini&sort_order=asc&sort_by=print_date&date_start=2020-04-01&date_end=2020-06-31',
     'https://nyt-games-prd.appspot.com/svc/crosswords/v3/' + user_id + '/puzzles.json?publish_type=mini&sort_order=asc&sort_by=print_date&date_start=2020-07-01&date_end=2020-08-31',
     'https://nyt-games-prd.appspot.com/svc/crosswords/v3/' + user_id + '/puzzles.json?publish_type=mini&sort_order=asc&sort_by=print_date&date_start=2020-09-01&date_end=2020-11-31',
-    'https://nyt-games-prd.appspot.com/svc/crosswords/v3/' + user_id + '/puzzles.json?publish_type=mini&sort_order=asc&sort_by=print_date&date_start=2020-12-01&date_end=2021-01-31'
+    'https://nyt-games-prd.appspot.com/svc/crosswords/v3/' + user_id + '/puzzles.json?publish_type=mini&sort_order=asc&sort_by=print_date&date_start=2020-12-01&date_end=2021-02-28'
 ]
 
 game_data = []

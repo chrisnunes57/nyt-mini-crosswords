@@ -98,7 +98,7 @@ Once you have a valid `config.json`, you can scrape the data yourself by followi
 
 1. Run `scraper.py` to populate `data.json` with data. 
     - This might take a minute, as it will make a request for each day in the desired date range
-3. Once `data.json` is populated, run `frequencies.py` to print analysis to stdout
+3. Once `data.json` is populated, run `frequencies.py` to print word-related analysis to stdout
     - It's a lot of output, so it can be useful to pipe to a file, like `python frequencies.py > text.out`
 
 # Important Notes
